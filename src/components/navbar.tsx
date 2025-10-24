@@ -2,10 +2,12 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { ArrowRight } from 'lucide-react';
 
 const Navbar = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const pathname = usePathname();
 
     const toggleMobileMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -21,10 +23,11 @@ const Navbar = () => {
                     </span>
                     {/* Center: Navigation Links (visible on larger screens) */}
                     <div className="hidden md:flex md:space-x-4">
-                        <Link href="#" className="text-gray-700 hover:bg-[#f2f2f2] rounded-xl text-sm py-2 px-4">Home</Link>
-                        <Link href="#" className="text-gray-700 hover:bg-[#f2f2f2] rounded-xl text-sm py-2 px-4">About</Link>
-                        <Link href="#" className="text-gray-700 hover:bg-[#f2f2f2] rounded-xl text-sm py-2 px-4">Services</Link>
-                        <Link href="#" className="text-gray-700 hover:bg-[#f2f2f2] rounded-xl text-sm py-2 px-4">Contact</Link>
+                        <Link href="/" className={`rounded-xl text-sm py-2 px-4 ${pathname === '/' ? 'bg-[#253612] text-white' : 'text-gray-700 hover:bg-[#f2f2f2]'}`}>Home</Link>
+                        <Link href="/about" className={`rounded-xl text-sm py-2 px-4 ${pathname === '/about' ? 'bg-[#253612] text-white' : 'text-gray-700 hover:bg-[#f2f2f2]'}`}>About</Link>
+                        <Link href="/community" className={`rounded-xl text-sm py-2 px-4 ${pathname === '/community' ? 'bg-[#253612] text-white' : 'text-gray-700 hover:bg-[#f2f2f2]'}`}>Community</Link>
+                        <Link href="/contact" className={`rounded-xl text-sm py-2 px-4 ${pathname === '/contact' ? 'bg-[#253612] text-white' : 'text-gray-700 hover:bg-[#f2f2f2]'}`}>Contact</Link>
+                        <Link href="/careers" className={`rounded-xl text-sm py-2 px-4 ${pathname === '/careers' ? 'bg-[#253612] text-white' : 'text-gray-700 hover:bg-[#f2f2f2]'}`}>Careers</Link>
                     </div>
                     {/* Right: Hamburger Menu and Login */}
                     <div className="flex items-center space-x-4">
@@ -49,10 +52,11 @@ const Navbar = () => {
             {/* Mobile Menu (visible only on smaller screens when toggled) */}
             {isMobileMenuOpen && (
                 <div className="md:hidden fade-in text-base bg-white rounded-2xl px-5 pb-2 mt-2 flex flex-col space-y-5 py-5">
-                    <Link href="#" className="text-gray-700 hover:text-blue-600 font-medium transition">Home</Link>
-                    <Link href="#" className="text-gray-700 hover:text-blue-600 font-medium transition">About</Link>
-                    <Link href="#" className="text-gray-700 hover:text-blue-600 font-medium transition">Services</Link>
-                    <Link href="#" className="text-gray-700 hover:text-blue-600 font-medium transition">Contact</Link>
+                    <Link href="/" className={`font-medium transition ${pathname === '/' ? 'text-[#253612] font-semibold' : 'text-gray-700 hover:text-[#253612]'}`}>Home</Link>
+                    <Link href="/about" className={`font-medium transition ${pathname === '/about' ? 'text-[#253612] font-semibold' : 'text-gray-700 hover:text-[#253612]'}`}>About</Link>
+                    <Link href="/community" className={`font-medium transition ${pathname === '/community' ? 'text-[#253612] font-semibold' : 'text-gray-700 hover:text-[#253612]'}`}>Community</Link>
+                    <Link href="/contact" className={`font-medium transition ${pathname === '/contact' ? 'text-[#253612] font-semibold' : 'text-gray-700 hover:text-[#253612]'}`}>Contact</Link>
+                    <Link href="/careers" className={`font-medium transition ${pathname === '/careers' ? 'text-[#253612] font-semibold' : 'text-gray-700 hover:text-[#253612]'}`}>Careers</Link>
                     <Link href="#" className="w-full px-5 py-3 flex flex-row gap-3 items-center justify-center rounded-3xl bg-[#253612] text-white hover:bg-[#364f1b]">
                         Log In
                         <ArrowRight size={15} />
