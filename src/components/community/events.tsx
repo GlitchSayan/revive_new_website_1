@@ -35,36 +35,6 @@ const CommunityEvents = () => {
         }
     ]
 
-    const initiatives = [
-        {
-            title: "Green Neighborhoods",
-            description: "Transforming communities into recycling hubs through local partnerships and awareness programs.",
-            impact: "100+ neighborhoods",
-            icon: "🏘️",
-            status: "Active"
-        },
-        {
-            title: "Student Ambassador Program",
-            description: "Empowering young minds to become sustainability leaders in their schools and communities.",
-            impact: "500+ students",
-            icon: "🎓",
-            status: "Expanding"
-        },
-        {
-            title: "Corporate Partnerships",
-            description: "Collaborating with businesses to implement large-scale recycling solutions and employee programs.",
-            impact: "200+ companies",
-            icon: "🏢",
-            status: "Growing"
-        },
-        {
-            title: "Rural Outreach",
-            description: "Extending recycling services to rural areas and educating communities about waste management.",
-            impact: "75+ villages",
-            icon: "🌾",
-            status: "New Initiative"
-        }
-    ]
 
     return (
         <div className='bg-white py-16 md:py-24 px-6 md:px-12 lg:px-24'>

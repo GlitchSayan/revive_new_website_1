@@ -1,6 +1,5 @@
 import React from 'react'
 import Navbar from '../navbar'
-import Image from 'next/image'
 
 const AboutHero = () => {
     return (
@@ -13,7 +12,7 @@ const AboutHero = () => {
                     </div>
                     <div className="text-base md:text-lg lg:text-xl font-sans font-light mt-6 lg:px-8 text-[#343434] leading-relaxed">
                         We collect scrap right from your doorstep and pay you instantly — no hassle, no stress! 
-                        It's a safe, eco-friendly way to recycle your waste and earn money. Join us in creating 
+                        It&apos;s a safe, eco-friendly way to recycle your waste and earn money. Join us in creating 
                         a cleaner, greener future — because every scrap counts!
                     </div>
                 </div>

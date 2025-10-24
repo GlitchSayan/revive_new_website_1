@@ -47,7 +47,7 @@ const AboutRevive = () => {
                         <div className='space-y-6'>
                             <p className='text-base md:text-lg leading-relaxed'>
                                 Revive helps you recycle your waste while offering the best exchange rates. 
-                                We're committed to turning your scrap into value through reliable, high-quality 
+                                We&apos;re committed to turning your scrap into value through reliable, high-quality 
                                 recycling services.
                             </p>
                             <p className='text-sm md:text-base leading-relaxed opacity-90'>
