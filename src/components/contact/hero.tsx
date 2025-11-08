@@ -43,8 +43,8 @@ const ContactHero = () => {
                             Contact Us At<br />
                         </h1>
                         <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                            Have questions about recycling or our services? We'd love to hear from you.<br className="hidden sm:block" />
-                            Send us a message and we'll respond as soon as possible.
+                            Have questions about recycling or our services? We&apos;d love to hear from you.<br className="hidden sm:block" />
+                            Send us a message and we&apos;ll respond as soon as possible.
                         </p>
                     </div>
 
@@ -60,7 +60,7 @@ const ContactHero = () => {
                                     <h2 className="text-2xl md:text-3xl font-bold text-[#253612]">
                                         Send Message
                                     </h2>
-                                    <p className="text-sm text-gray-500">We'll get back to you within 24 hours</p>
+                                    <p className="text-sm text-gray-500">We&apos;ll get back to you within 24 hours</p>
                                 </div>
                             </div>
 
