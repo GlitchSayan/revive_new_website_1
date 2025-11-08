@@ -18,9 +18,8 @@ const CommunityStories = () => {
                 {/* Success Stories - Picture Grid (3x4) */}
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mb-16 -mx-6 md:-mx-12 lg:-mx-32'>
                     {[
-                        '/c2.JPG', '/c3.JPG', '/c4.JPG', '/c5.JPG',
-                        '/c6.JPG', '/c7.JPG', '/c8.JPG', '/c9.JPG',
-                        '/c10.JPG', '/c11.JPG', '/c1.JPG', '/c2.JPG'
+                        '/c4.jpeg', '/c5.jpeg', '/c6.jpeg', '/c7.jpeg',
+                        '/c8.jpeg', '/c9.jpeg',
                     ].map((imageSrc, index) => (
                         <div key={index} className='relative rounded-xl overflow-hidden hover:scale-105 transition-transform duration-300 cursor-pointer'>
                             <Image 

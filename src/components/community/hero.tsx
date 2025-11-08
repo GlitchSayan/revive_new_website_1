@@ -23,7 +23,7 @@ const CommunityHero = () => {
             <div className="flex justify-center items-center mt-12 mb-8 w-full max-w-6xl">
                 <div className="w-full h-80 md:h-96 lg:h-[500px] rounded-2xl relative overflow-hidden">
                     <Image 
-                        src="/c1.JPG" 
+                        src="/c1.jpeg" 
                         alt="Revive Community in Action" 
                         fill
                         className="object-cover rounded-2xl"

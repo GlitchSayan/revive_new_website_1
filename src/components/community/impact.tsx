@@ -5,27 +5,30 @@ const CommunityImpact = () => {
         {
             title: "Environmental Impact",
             stats: [
-                { number: "2,500", label: "Tons CO₂ Reduced", icon: "🌱" },
-                { number: "75,000", label: "Trees Saved", icon: "🌳" },
-                { number: "1M+", label: "Liters Water Saved", icon: "💧" }
+                { number: "300+", label: "Tons Industrial Waste Diverted", icon: "♻️" },
+                { number: "15,000+", label: "Trees Saved", icon: "🌳" },
+                { number: "500,000+", label: "Liters Water Saved", icon: "💧" },
+                { number: "1,200+", label: "Tons CO₂ Reduced", icon: "🌍" }
             ],
             color: "from-green-400 to-green-600"
         },
         {
-            title: "Community Growth",
+            title: "Community & Social Impact",
             stats: [
-                { number: "10K+", label: "Active Members", icon: "👥" },
-                { number: "500+", label: "Cities", icon: "🏙️" },
-                { number: "95%", label: "Satisfaction Rate", icon: "⭐" }
+                { number: "400+", label: "Industries Connected", icon: "🏭" },
+                { number: "120+", label: "Scrap Collectors Empowered", icon: "🧹" },
+                { number: "10+", label: "Awareness Events", icon: "🏫" },
+                { number: "1,000+", label: "Students Educated", icon: "👦" },
             ],
             color: "from-blue-400 to-blue-600"
         },
         {
             title: "Economic Impact",
             stats: [
-                { number: "₹5M+", label: "Earned by Users", icon: "💰" },
-                { number: "₹2K", label: "Average Monthly Earning", icon: "📈" },
-                { number: "24hrs", label: "Average Payment Time", icon: "⚡" }
+                { number: "₹10L+", label: "Earned by Collectors", icon: "💰" },
+                { number: "300T", label: "Ongoing Recycling Projects", icon: "📦" },
+                { number: "3 Cities", label: "Fair Pricing System", icon: "⚖️" },
+                { number: "24hrs", label: "Average Response Time", icon: "⚡" }
             ],
             color: "from-purple-400 to-purple-600"
         }

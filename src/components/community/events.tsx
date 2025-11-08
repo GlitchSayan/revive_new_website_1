@@ -4,34 +4,34 @@ import Image from 'next/image'
 const CommunityEvents = () => {
     const pastEvents = [
         {
-            title: "Prakriti 1",
-            date: "September 15, 2024",
-            time: "9:00 AM - 6:00 PM",
-            location: "Community Center, Bangalore",
-            description: "Our inaugural community recycling drive that brought together hundreds of eco-warriors for a day of environmental action and awareness.",
+            title: "Prakriti Path 1",
+            date: "August 24, 2025",
+            time: "9:00 AM - 2:00 PM",
+            location: "KGBV Anandapuram, Visakhapatnam",
+            description: "Students participated in a fun, interactive game where they were given hints about common waste materials and had to identify them around the school. The activity was designed to teach kids how everyday materials can be repurposed and recycled, fostering environmental curiosity at a young age.",
+            category: "Registration Closed",
+            participants: "200+ participants",
+            image: "/c2.png"
+        },
+        {
+            title: "Prakriti Path 2", 
+            date: "September 20, 2025",
+            time: "9:00 AM - 12:00 PM",
+            location: "KGBV Bheemunipatnam, Visakhapatnam",
+            description: "Groups of students were provided with discarded materials such as bottles, paper, and packaging, and were asked to create something useful within one hour. This hands-on activity encouraged creativity and problem-solving while reinforcing the concept of upcycling. In addition, the sessions included interactive talks on sustainability and menstrual hygiene, promoting holistic awareness of environmental and personal well-being topics",
             category: "Registration Closed",
             participants: "300+ participants",
-            image: "/c2.JPG"
+            image: "/c3.png"
         },
         {
-            title: "Prakriti 2", 
-            date: "November 20, 2024",
-            time: "8:00 AM - 5:00 PM",
-            location: "Green Park, Delhi",
-            description: "Building on the success of Prakriti 1, our second event expanded the reach with more activities, workshops, and community engagement.",
-            category: "Registration Closed",
-            participants: "500+ participants",
-            image: "/c3.JPG"
-        },
-        {
-            title: "Upcoming: Prakriti 3",
-            date: "March 2025",
-            time: "TBA",
-            location: "Coming Soon",
-            description: "Get ready for our biggest community event yet! More details to be announced soon. ",
+            title: "Upcoming: Prakriti Path 3",
+            date: "November 20, 2025",
+            time: "9:00 AM - 3:00 PM",
+            location: "Jawaharlal Nehru School , Kommadi",
+            description: "Ongoing Initiatives to promote environmental awareness and sustainability among students.",
             category: "Upcoming Event",
             participants: "Registration opens soon",
-            image: "/c12.png"
+            image: "/logo2.png"
         }
     ]
 
