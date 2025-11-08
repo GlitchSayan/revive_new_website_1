@@ -1,8 +1,9 @@
 "use client"
 
 import Link from "next/link"
-import Image from "next/image"
 import { Card } from "@/components/ui/card"
+import Navbar from "@/components/navbar"
+import Footer from '@/components/footer'
 
 const jobs = [
   {
@@ -39,73 +40,55 @@ const jobs = [
 
 export default function CareersPage() {
   return (
-    <main className="min-h-screen bg-white">
-      {/* Header Section */}
-      <section className="border-b border-gray-200 bg-white">
-        <div className="mx-auto max-w-6xl px-6 py-12">
-          {/* Logo */}
-          <div className="mb-8">
-            <Link href="https://www.revives.in/" target="_blank">
-              <Image
-                src="/images/img-logo2.webp"
-                alt="Revive Logo"
-                width={240}
-                height={120}
-                priority
-                className="h-auto w-[120px]"
-              />
-            </Link>
+    <main className="min-h-screen">
+      <div className='flex flex-col bg-[#f5faf6] m-3 md:m-8 rounded-2xl border border-neutral-200 px-3 overflow-hidden'>
+        <Navbar />
+        
+        {/* Header Section */}
+        <section className="py-12">
+          <div className="mx-auto max-w-6xl px-6">
+            {/* Title & Description */}
+            <div className="text-center">
+              <h1 className="text-4xl md:text-5xl font-bold text-[#253612] mb-6">Join Our Mission</h1>
+              <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+                Revive is the ultimate solution for eco-conscious families looking to make a positive impact on the
+                environment while earning money through recycling.
+              </p>
+            </div>
           </div>
+        </section>
 
-          {/* Title & Description */}
-          <div>
-            <h1 className="text-5xl font-bold text-[#386641] mb-4">Join Our Mission</h1>
-            <p className="text-xl text-gray-700 max-w-3xl">
-              Revive is the ultimate solution for eco-conscious families looking to make a positive impact on the
-              environment while earning money through recycling.
+        {/* Jobs Section */}
+        <section className="mx-auto max-w-6xl px-6 py-16">
+          <div className="mb-12 text-center">
+            <h2 className="text-3xl font-bold text-[#253612] mb-3">
+              Open Internship Positions
+            </h2>
+            <p className="text-gray-600 text-lg">
+              Be part of the change. Build a sustainable future with us.
             </p>
           </div>
-        </div>
-      </section>
 
-      {/* Jobs Section */}
-      <section className="mx-auto max-w-6xl px-6 py-16">
-        <div className="mb-12 text-center">
-          <h2 className="text-3xl font-bold text-[#386641] mb-3">
-            Open Internship Positions
-          </h2>
-          <p className="text-gray-600 text-lg">
-            Be part of the change. Build a sustainable future with us.
-          </p>
-        </div>
+          {/* Job Cards */}
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {jobs.map((job) => (
+              <Link key={job.id} href={`/careers/${job.id}`}>
+                <Card className="flex h-full flex-col cursor-pointer border border-gray-300 bg-white p-6 rounded-xl transition hover:shadow-lg hover:border-[#386641]/60">
+                  <h2 className="text-xl font-bold text-[#386641] mb-3">{job.title}</h2>
+                  <p className="text-sm text-gray-600 mb-4 grow">{job.description}</p>
 
-        {/* Job Cards */}
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {jobs.map((job) => (
-            <Link key={job.id} href={`/careers/${job.id}`}>
-              <Card className="flex h-full flex-col cursor-pointer border border-gray-300 bg-white p-6 rounded-xl transition hover:shadow-lg hover:border-[#386641]/60">
-                <h2 className="text-xl font-bold text-[#386641] mb-3">{job.title}</h2>
-                <p className="text-sm text-gray-600 mb-4 grow">{job.description}</p>
-
-                <div className="mt-auto">
-                  <button className="w-full rounded-full bg-[#386641] py-2.5 text-white text-sm font-medium transition hover:bg-[#364f1b] hover:shadow-md">
-                    Apply Now
-                  </button>
-                </div>
-              </Card>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* Footer (Clean Version) */}
-      <footer className="py-12 mt-12 border-t border-gray-200">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="bg-[#386641] rounded-xl px-8 py-6 text-center">
-            <p className="text-white text-sm">© {new Date().getFullYear()} Revive Ecotech Ltd</p>
+                  <div className="mt-auto">
+                    <button className="w-full cursor-pointer rounded-full bg-[#386641] py-2.5 text-white text-sm font-medium transition hover:bg-[#364f1b] hover:shadow-md">
+                      Apply Now
+                    </button>
+                  </div>
+                </Card>
+              </Link>
+            ))}
           </div>
-        </div>
-      </footer>
+        </section>
+      </div>
+      <Footer />
     </main>
   )
 }

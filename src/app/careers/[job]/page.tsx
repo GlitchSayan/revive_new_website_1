@@ -162,7 +162,7 @@ export default function JobApplicationPage() {
 
           <button
             onClick={() => router.back()}
-            className="mb-6 text-sm flex items-center gap-2 font-medium text-[#386641] hover:text-[#253612] transition"
+            className="mb-6 text-sm flex items-center gap-2 font-medium text-[#386641] hover:text-[#253612] transition cursor-pointer"
           >
             <span>←</span> Back to Careers
           </button>
@@ -311,14 +311,14 @@ export default function JobApplicationPage() {
                 type="button"
                 variant="outline"
                 onClick={() => router.back()}
-                className="flex-1 border-[#386641] text-[#386641] hover:bg-[#386641] hover:text-white transition"
+                className="flex-1 border-[#386641] text-[#386641] hover:bg-[#386641] hover:text-white transition cursor-pointer"
               >
                 Cancel
               </Button>
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="flex-1 bg-[#386641] text-white hover:bg-[#364f1b] transition"
+                className="flex-1 bg-[#386641] text-white hover:bg-[#364f1b] transition cursor-pointer"
               >
                 {isSubmitting ? "Submitting..." : "Submit Application"}
               </Button>
