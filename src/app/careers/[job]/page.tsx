@@ -22,6 +22,7 @@ const jobTitles: Record<string, string> = {
   "industry-and-partnership": "Industry & Partnership Relations",
   "field-operations-and-community": "Field Operations & Community Liaison",
   "marketing-and-outreach": "Marketing & Outreach",
+  "finance-accounts-compliance": "Finance, Accounts & Compliance",
 }
 
 export default function JobApplicationPage() {
