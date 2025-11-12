@@ -1,10 +1,18 @@
+interface StepCardProps {
+  stepNumber: number;
+  title: string;
+  description: string;
+  children: React.ReactNode;
+  colorClass: string;
+}
+
 export default function StepCard({
   stepNumber,
   title,
   description,
   children,
   colorClass,
-}: any) {
+}: StepCardProps) {
   return (
     <div className="text-center">
       <div className="relative mb-8">

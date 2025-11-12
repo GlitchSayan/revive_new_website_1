@@ -145,7 +145,7 @@ const jobs = [
         <div>
           <h3 className="text-lg font-semibold text-[#253612] mb-3">You will:</h3>
           <ul className="list-none text-gray-600 space-y-2">
-            <li>– Contact industries via calls, emails, LinkedIn, or visits and explain Revive Ecotech's model and offers</li>
+            <li>– Contact industries via calls, emails, LinkedIn, or visits and explain Revive Ecotech&apos;s model and offers</li>
             <li>– Visit at least 3 factories or scrap sellers every week to collect data and convince them to partner with us</li>
             <li>– Keep a proper log of every call, meeting, factory visit, proposal sent, and deal status</li>
             <li>– Negotiate pricing, pickup terms, and contracts with industry owners, managers, or procurement heads</li>

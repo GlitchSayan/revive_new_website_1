@@ -46,7 +46,7 @@ export default function JobApplicationPage() {
     cgpa: "",
     resumeLink: "",
     skills: "",
-    certificates: "",
+    experience: "",
   })
 
   const handleInputChange = (
@@ -132,7 +132,7 @@ export default function JobApplicationPage() {
       data.append("entry.725944090", formData.cgpa)
       data.append("entry.1721496479", formData.resumeLink)
       data.append("entry.2109491984", formData.skills)
-      data.append("entry.1467922557", formData.certificates)
+      data.append("entry.1467922557", formData.experience)
 
       await fetch(googleFormUrl, { method: "POST", body: data, mode: "no-cors" })
       router.push("/careers/thank-you")
@@ -297,9 +297,9 @@ export default function JobApplicationPage() {
                   className="min-h-24 w-full bg-[#f9fafb] border border-gray-400 text-gray-800 placeholder:text-gray-500 rounded-md p-2 focus:border-[#386641] focus:ring-2 focus:ring-[#386641]/30 outline-none transition"
                 />
                 <textarea
-                  name="certificates"
-                  placeholder="Certificates (Google Drive Links)"
-                  value={formData.certificates}
+                  name="experience"
+                  placeholder="Experience (Links)"
+                  value={formData.experience}
                   onChange={handleInputChange}
                   className="min-h-24 w-full bg-[#f9fafb] border border-gray-400 text-gray-800 placeholder:text-gray-500 rounded-md p-2 focus:border-[#386641] focus:ring-2 focus:ring-[#386641]/30 outline-none transition"
                 />

@@ -1,15 +1,23 @@
 "use client";
 import Lottie from "lottie-react";
 
+interface LottieStepProps {
+  animationData: unknown;
+  title: string;
+  description: string;
+  bgColor?: string;
+  width?: number;
+  height?: number;
+}
+
 export default function LottieStep({
   animationData,
   title,
   description,
-  stepNumber,
   bgColor = "bg-white",
   width = 300,
   height = 200,
-}: any) {
+}: LottieStepProps) {
   return (
     <div className="text-center group">
       {/* Animation Container */}

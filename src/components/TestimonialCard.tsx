@@ -1,10 +1,20 @@
+import Image from "next/image";
+
+interface TestimonialCardProps {
+  testimonial: string;
+  author: string;
+  rating: number;
+  avatar?: string;
+  position?: "left" | "right";
+}
+
 export default function TestimonialCard({
   testimonial,
   author,
   rating,
   avatar,
   position = "left",
-}: any) {
+}: TestimonialCardProps) {
   const renderStars = (rating: number) => {
     return [...Array(5)].map((_, i) => (
       <span
@@ -27,9 +37,11 @@ export default function TestimonialCard({
       <div className="flex-shrink-0">
         <div className="w-12 h-12 bg-gray-300 rounded-full overflow-hidden">
           {avatar ? (
-            <img
+            <Image
               src={avatar}
               alt={author}
+              width={48}
+              height={48}
               className="w-full h-full object-cover"
             />
           ) : (

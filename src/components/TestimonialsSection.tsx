@@ -27,9 +27,9 @@ export default function TestimonialsSection() {
               </div>
 
               <p className="text-gray-700 mb-4 leading-relaxed">
-                "After just a week of using Olive, I feel more in control of my
-                family's nutrition than ever before. It's empowering to make
-                informed choices so quickly."
+                &quot;After just a week of using Olive, I feel more in control of my
+                family&apos;s nutrition than ever before. It&apos;s empowering to make
+                informed choices so quickly.&quot;
               </p>
 
               <div className="flex items-center">
@@ -78,9 +78,9 @@ export default function TestimonialsSection() {
             <div className="space-y-8">
               <div className="bg-white p-6 rounded-2xl shadow-lg">
                 <p className="text-gray-700 mb-4 leading-relaxed">
-                  "Olive has completely changed the way I shop for my family. I
-                  feel confident knowing exactly what's in our food before it
-                  ever hits our pantry."
+                  &quot;Olive has completely changed the way I shop for my family. I
+                  feel confident knowing exactly what&apos;s in our food before it
+                  ever hits our pantry.&quot;
                 </p>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
@@ -103,9 +103,9 @@ export default function TestimonialsSection() {
 
               <div className="bg-white p-6 rounded-2xl shadow-lg">
                 <p className="text-gray-700 mb-4 leading-relaxed">
-                  "Meal planning used to be stressful. Now I scan, get
+                  &quot;Meal planning used to be stressful. Now I scan, get
                   recommendations, and feel great about what my kids are eating.
-                  It's that easy."
+                  It&apos;s that easy.&quot;
                 </p>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
