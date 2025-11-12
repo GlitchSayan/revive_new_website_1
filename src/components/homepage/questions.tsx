@@ -11,7 +11,7 @@ const Questions = () => {
     };
 
     return (
-        <div className='flex flex-col max-w-sm font-sans sm:max-w-2xl lg:max-w-5xl xl:max-w-6xl px-3 sm:px-1 mx-auto '>
+        <div className='flex flex-col max-w-sm font-sans sm:max-w-2xl lg:max-w-5xl xl:max-w-6xl px-3 sm:px-1 mx-auto'>
             <div className='flex flex-col bg-[#fff9eb] rounded-2xl md:rounded-[4rem] mt-5  pt-20 pb-24'>
                 <span className='text-2xl md:text-5xl md:px-8 text-center text-[#253612] mb-10'>Frequently Asked Questions</span>
                 {questionsData.map((item, index) => (

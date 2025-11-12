@@ -46,8 +46,7 @@ export default function AnimatedFeatures() {
           Why Choose Revive?
         </h2>
         <p className="text-gray-600 max-w-2xl mx-auto">
-          Our AI-powered platform helps you make informed decisions about your
-          food choices while promoting sustainability.
+          Our tech-enabled platform simplifies waste management, empowers collectors, and drives sustainability through innovation and transparency.
         </p>
       </div>
 

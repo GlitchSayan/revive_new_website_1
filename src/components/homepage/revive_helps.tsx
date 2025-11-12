@@ -4,7 +4,7 @@ import Image from 'next/image'
 import HelpersSection from './helpersSection'
 const ReviveHelps = () => {
     return (
-        <div className='flex flex-col bg-[#f5faf6] w-full' >
+        <div className='flex flex-col bg-[#f5faf6] w-full pb-9 lg:pb-28' >
             <div className='bg-[#386641] px-6 py-8 md:py-32 md:px-24 lg:py-48 lg:px-36 xl:px-52 pb-32'>
                 <div className='flex flex-col md:flex-row gap-9 md:gap-8'>
                     <div className='md:w-1/2 text-2xl md:text-5xl'>

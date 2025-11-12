@@ -7,8 +7,8 @@ export default function CSSAnimatedFeatures() {
   const features = [
     {
       id: "eco-friendly",
-      title: "Eco-Friendly",
-      description: "Sustainable choices for a better planet",
+      title: "Eco-Driven",
+      description: "Smart recycling for a cleaner, greener planet.",
       color: "#00c851",
       bgColor: "bg-green-100",
       iconColor: "bg-green-500",
@@ -16,8 +16,8 @@ export default function CSSAnimatedFeatures() {
     },
     {
       id: "ai-powered",
-      title: "AI-Powered",
-      description: "Advanced machine learning technology",
+      title: "Tech-Powered",
+      description: "AI and data-backed solutions for smarter waste handling.",
       color: "#4285f4",
       bgColor: "bg-blue-100",
       iconColor: "bg-blue-500",
@@ -26,7 +26,7 @@ export default function CSSAnimatedFeatures() {
     {
       id: "real-time",
       title: "Real-time",
-      description: "Instant analysis and recommendations",
+      description: "Instant tracking, pickup updates, and digital documentation.",
       color: "#ff8800",
       bgColor: "bg-orange-100",
       iconColor: "bg-orange-500",
@@ -34,8 +34,8 @@ export default function CSSAnimatedFeatures() {
     },
     {
       id: "personalized",
-      title: "Personalized",
-      description: "Tailored to your dietary preferences",
+      title: "Transparent",
+      description: "Fair pricing and verified transactions for every user.",
       color: "#aa66cc",
       bgColor: "bg-purple-100",
       iconColor: "bg-purple-500",
@@ -59,8 +59,7 @@ export default function CSSAnimatedFeatures() {
             Why Choose Revive?
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Our AI-powered platform helps you make informed decisions about your
-            food choices while promoting sustainability.
+            Our tech-enabled platform simplifies waste management, empowers collectors, and drives sustainability through innovation and transparency.
           </p>
         </div>
 

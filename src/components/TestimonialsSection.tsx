@@ -27,9 +27,7 @@ export default function TestimonialsSection() {
               </div>
 
               <p className="text-gray-700 mb-4 leading-relaxed">
-                &quot;After just a week of using Olive, I feel more in control of my
-                family&apos;s nutrition than ever before. It&apos;s empowering to make
-                informed choices so quickly.&quot;
+                &quot;Revive helped our factory manage scrap seamlessly — no middlemen, no confusion. Payments and pickups are now transparent and on time.&quot;
               </p>
 
               <div className="flex items-center">
@@ -37,7 +35,7 @@ export default function TestimonialsSection() {
                   L
                 </div>
                 <div>
-                  <h4 className="font-bold text-gray-900">Lila M.</h4>
+                  <h4 className="font-bold text-gray-900">Rajesh K., Operations Head, Andhra Paper Mills</h4>
                   <div className="flex">
                     {[...Array(5)].map((_, i) => (
                       <span key={i} className="text-yellow-400 text-sm">
@@ -63,7 +61,7 @@ export default function TestimonialsSection() {
               </div>
 
               <h2 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                Real Mothers
+                Real Changes
                 <br />
                 <span className="text-[#386642]">Real Results</span>
               </h2>
@@ -78,9 +76,7 @@ export default function TestimonialsSection() {
             <div className="space-y-8">
               <div className="bg-white p-6 rounded-2xl shadow-lg">
                 <p className="text-gray-700 mb-4 leading-relaxed">
-                  &quot;Olive has completely changed the way I shop for my family. I
-                  feel confident knowing exactly what&apos;s in our food before it
-                  ever hits our pantry.&quot;
+                  &quot;As a local scrap collector, I now earn fair prices and regular income. The Revive app makes me feel valued and part of something bigger.&quot;
                 </p>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
@@ -88,7 +84,7 @@ export default function TestimonialsSection() {
                       M
                     </div>
                     <div>
-                      <h4 className="font-bold text-gray-900 text-sm">Megan L.</h4>
+                      <h4 className="font-bold text-gray-900 text-sm">Suresh P., Scrap Collector, Visakhapatnam</h4>
                       <div className="flex">
                         {[...Array(5)].map((_, i) => (
                           <span key={i} className="text-yellow-400 text-xs">
@@ -103,9 +99,7 @@ export default function TestimonialsSection() {
 
               <div className="bg-white p-6 rounded-2xl shadow-lg">
                 <p className="text-gray-700 mb-4 leading-relaxed">
-                  &quot;Meal planning used to be stressful. Now I scan, get
-                  recommendations, and feel great about what my kids are eating.
-                  It&apos;s that easy.&quot;
+                  &quot;Our school campaign with Revive taught students about waste segregation in a fun, practical way. The impact was incredible.&quot;
                 </p>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
@@ -113,7 +107,7 @@ export default function TestimonialsSection() {
                       T
                     </div>
                     <div>
-                      <h4 className="font-bold text-gray-900 text-sm">Tina B.</h4>
+                      <h4 className="font-bold text-gray-900 text-sm">Anusha R., Teacher, KGBV School Bheemunipatnam</h4>
                       <div className="flex">
                         {[...Array(4)].map((_, i) => (
                           <span key={i} className="text-yellow-400 text-xs">
@@ -131,7 +125,7 @@ export default function TestimonialsSection() {
             {/* Call to action */}
             <div className="mt-12">
               <button className="bg-[#386642] cursor-pointer text-white font-bold py-4 px-8 rounded-full text-lg transition-colors duration-200 shadow-lg hover:shadow-xl">
-                Join Thousands of Happy Families
+                Join Thousands of Happy Customers
               </button>
             </div>
           </div>
