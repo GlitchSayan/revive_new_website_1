@@ -98,7 +98,7 @@ const HowItWorks = () => {
                                 Ready to Start Your Recycling Journey?
                             </h3>
                             <p className='text-lg md:text-xl mb-8 opacity-95 max-w-3xl mx-auto font-sans'>
-                                Join thousands of families making a difference while earning money. Download our app and start recycling today!
+                                Join thousands of people making a difference while earning money. Download our app and start recycling today!
                             </p>
                             
                             <div className='flex flex-col sm:flex-row gap-4 justify-center items-center'>

@@ -360,7 +360,7 @@ export default function CareersPage() {
             <div className="text-center">
               <h1 className="text-4xl md:text-5xl font-bold text-[#253612] mb-6">Join Our Mission</h1>
               <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
-                Revive is the ultimate solution for eco-conscious families looking to make a positive impact on the
+                Revive is the ultimate solution for eco-conscious people looking to make a positive impact on the
                 environment while earning money through recycling.
               </p>
             </div>

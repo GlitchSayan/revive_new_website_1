@@ -12,7 +12,7 @@ const ReviveHelps = () => {
                     </div>
                     <div className='md:w-1/2 text-sm md:text-xl grid grid-cols-1'>
                         <p>
-                            Revive is the ultimate solution for eco-conscious families looking to make a positive impact on the environment while earning money.
+                            Revive is the ultimate solution for eco-conscious people looking to make a positive impact on the environment while earning money.
                         </p>
                         <div className='flex flex-col justify-center items-baseline py-5 text-sm gap-4'>
                             <div className="flex flex-col gap-4">

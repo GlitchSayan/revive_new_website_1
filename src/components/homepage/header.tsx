@@ -10,7 +10,7 @@ const Header = () => {
             <div className='flex flex-col md:flex-row gap-7 items-center mt-14' >
                 <AnimatedTooltipPreview />
                 <div className='text-xs text-neutral-500'>
-                    Trusted by thousands of healthy families
+                    Trusted by thousands of healthy people
                 </div>
             </div>
             <div className="w-full sm:w-5/6 md:w-2/3 lg:w-1/2 mx-auto px-5 sm:px-2 ">
@@ -19,7 +19,7 @@ const Header = () => {
                         Earn Money while Recycling
                     </div>
                     <div className="text-sm md:text-lg font-sans font-extralight mt-10 lg:px-32 text-[#343434]">
-                        Revive is the ultimate solution for eco-conscious families looking to make a positive impact on the environment while earning money.
+                        Revive is the ultimate solution for eco-conscious people looking to make a positive impact on the environment while earning money.
                     </div>
                 </div>
             </div>
