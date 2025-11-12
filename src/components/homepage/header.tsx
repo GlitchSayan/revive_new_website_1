@@ -16,10 +16,10 @@ const Header = () => {
             <div className="w-full sm:w-5/6 md:w-2/3 lg:w-1/2 mx-auto px-5 sm:px-2 ">
                 <div className="flex flex-col items-center justify-center mt-5 md:mt-10 text-center font-semibold">
                     <div className="text-4xl md:text-5xl lg:text-7xl text-[#253612] font-sans">
-                        Earn Money while Recycling
+                        Recycling for the Future
                     </div>
                     <div className="text-sm md:text-lg font-sans font-extralight mt-10 lg:px-32 text-[#343434]">
-                        Revive is the ultimate solution for eco-conscious people looking to make a positive impact on the environment while earning money.
+                        Revive bridges the gap between industries and recyclers — turning industrial waste into opportunity while empowering communities and protecting the planet.
                     </div>
                 </div>
             </div>
