@@ -15,7 +15,7 @@ const jobs = [
     modalContent: (
       <>
         <div>
-          <h3 className="text-lg font-semibold text-[#253612] mb-3">About the Role</h3>
+          <h3 className="text-lg font-semibold text-[#253612] mb-3">Learn more about the role!</h3>
           <p className="text-gray-600 whitespace-pre-line">
             Web & App Development Team (Choose Your Track - Web / App){"\n\n"}
             You&apos;ll be part of the core tech team building the Revive Ecotech digital platform, used by industries, households, and scrap collectors.{"\n"}
@@ -81,7 +81,7 @@ const jobs = [
     modalContent: (
       <>
         <div>
-          <h3 className="text-lg font-semibold text-[#253612] mb-3">About the Role</h3>
+          <h3 className="text-lg font-semibold text-[#253612] mb-3">Learn more about the role!</h3>
           <p className="text-gray-600 whitespace-pre-line">
             Research & Material Innovation (Recycling & Upcycling R&D Team){"\n\n"}
             This is not just Google-based research, it&apos;s hands-on scientific work with real industrial waste.
@@ -135,7 +135,7 @@ const jobs = [
     modalContent: (
       <>
         <div>
-          <h3 className="text-lg font-semibold text-[#253612] mb-3">About the Role</h3>
+          <h3 className="text-lg font-semibold text-[#253612] mb-3">Learn more about the role!</h3>
           <p className="text-gray-600 whitespace-pre-line">
             Industry & Partnership Relations (Client Acquisition + Deal Closure){"\n\n"}
             This is a professional, on-ground role where you help Revive Ecotech partner with industries, recyclers, and scrap buyers. Your work directly brings business and builds long-term relationships.
@@ -186,7 +186,7 @@ const jobs = [
     modalContent: (
       <>
         <div>
-          <h3 className="text-lg font-semibold text-[#253612] mb-3">About the Role</h3>
+          <h3 className="text-lg font-semibold text-[#253612] mb-3">Learn more about the role!</h3>
           <p className="text-gray-600 whitespace-pre-line">
             Field Operations & Community Liaison{"\n\n"}
             This role is the bridge between Revive Ecotech and the real world. As part of the Field Operations & Community team, you will work on-ground and directly with industries, communities, and local partners to make sustainability happen — not just online, but in action.
@@ -237,7 +237,7 @@ const jobs = [
     modalContent: (
       <>
         <div>
-          <h3 className="text-lg font-semibold text-[#253612] mb-3">About the Role</h3>
+          <h3 className="text-lg font-semibold text-[#253612] mb-3">Learn more about the role!</h3>
           <p className="text-gray-600 whitespace-pre-line">
             Marketing & Outreach (Ground + Digital Growth Team){"\n\n"}
             This is not a simple social media role, this is about creating real impact and making Revive Ecotech known across cities, industries, and communities.
@@ -290,7 +290,7 @@ const jobs = [
     modalContent: (
       <>
         <div>
-          <h3 className="text-lg font-semibold text-[#253612] mb-3">About the Role</h3>
+          <h3 className="text-lg font-semibold text-[#253612] mb-3">Learn more about the role!</h3>
           <p className="text-gray-600 whitespace-pre-line">
             Finance, Accounts & Compliance (Multi-Tasking Role){"\n\n"}
             This is a core strategic role at Revive Ecotech — where finance meets sustainability, innovation, and business intelligence. You&apos;ll handle everything from financial operations to strategic decision-making, helping the company grow responsibly and efficiently.
