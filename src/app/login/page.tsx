@@ -5,8 +5,20 @@ import Link from "next/link";
 import Image from "next/image";
 import { Eye, EyeOff, Mail, Lock } from "lucide-react";
 
-import { auth, googleProvider, RecaptchaVerifier, signInWithPhoneNumber } from "@/lib/firebase";
-import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import {
+  getFirebaseAuth,
+  getGoogleProvider,
+  getRecaptcha,
+  getPhoneAuth,
+} from "@/lib/firebase";
+
+import {
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  type Auth,
+  type ConfirmationResult,
+  type RecaptchaVerifier,
+} from "firebase/auth";
 
 export default function Login() {
   const [mode, setMode] = useState<"email" | "phone">("email");
@@ -22,15 +34,16 @@ export default function Login() {
   const [error, setError] = useState("");
 
   // ------------------------------------------
-  // SETUP INVISIBLE RECAPTCHA (NO UI)
+  // SETUP INVISIBLE RECAPTCHA (browser only)
   // ------------------------------------------
-  const setupRecaptcha = () => {
+  const setupRecaptcha = async (auth: Auth) => {
+    const Recaptcha = await getRecaptcha();
+    if (!Recaptcha) return null;
+
     if (!window.recaptchaVerifier) {
-      window.recaptchaVerifier = new RecaptchaVerifier(
-        auth,
-        "recaptcha-container",
-        { size: "invisible" }
-      );
+      window.recaptchaVerifier = new Recaptcha(auth, "recaptcha-container", {
+        size: "invisible",
+      });
     }
     return window.recaptchaVerifier;
   };
@@ -46,12 +59,22 @@ export default function Login() {
     }
 
     try {
-      const verifier = setupRecaptcha();
+      const auth = await getFirebaseAuth();
+      const phoneAuth = await getPhoneAuth();
+      if (!auth || !phoneAuth) return setError("Firebase not loaded");
+
+      const verifier = await setupRecaptcha(auth);
+      if (!verifier) return setError("Recaptcha not ready");
+
       const fullPhone = "+91" + phone;
 
-      const confirmation = await signInWithPhoneNumber(auth, fullPhone, verifier);
-      window.confirmationResult = confirmation;
+      const confirmation: ConfirmationResult = await phoneAuth(
+        auth,
+        fullPhone,
+        verifier
+      );
 
+      window.confirmationResult = confirmation;
       setOtpSent(true);
       alert("OTP Sent Successfully!");
     } catch (err: unknown) {
@@ -67,7 +90,8 @@ export default function Login() {
     try {
       if (!otp) return setError("Enter OTP");
 
-      const result = await window.confirmationResult!.confirm(otp);
+      await window.confirmationResult!.confirm(otp);
+
       alert("Logged in Successfully!");
     } catch (err: unknown) {
       if (err instanceof Error) setError(err.message);
@@ -82,6 +106,9 @@ export default function Login() {
     setError("");
 
     try {
+      const auth = await getFirebaseAuth();
+      if (!auth) return setError("Firebase not loaded");
+
       await signInWithEmailAndPassword(auth, email, password);
       alert("Login Successful!");
     } catch (err: unknown) {
@@ -95,7 +122,11 @@ export default function Login() {
   // ------------------------------------------
   const googleLogin = async () => {
     try {
-      await signInWithPopup(auth, googleProvider);
+      const auth = await getFirebaseAuth();
+      const provider = await getGoogleProvider();
+      if (!auth || !provider) return setError("Firebase not loaded");
+
+      await signInWithPopup(auth, provider);
       alert("Logged in with Google!");
     } catch (err: unknown) {
       if (err instanceof Error) setError(err.message);
@@ -113,36 +144,22 @@ export default function Login() {
 
         {/* TOP BUTTONS */}
         <div className="flex items-center justify-between mb-8">
-          <Link
-            href="/"
-            className="bg-[#253612] text-white px-6 py-2 rounded-full text-sm"
-          >
+          <Link href="/" className="bg-[#253612] text-white px-6 py-2 rounded-full text-sm">
             ← Home
           </Link>
 
-          <Link
-            href="/signup"
-            className="bg-[#253612] text-white px-6 py-2 rounded-full text-sm"
-          >
+          <Link href="/signup" className="bg-[#253612] text-white px-6 py-2 rounded-full text-sm">
             Sign Up
           </Link>
         </div>
 
         {/* LOGO */}
-        <Image
-          src="/logo2.png"
-          width={100}
-          height={100}
-          alt="Revive Logo"
-          className="mb-4"
-        />
+        <Image src="/logo2.png" width={100} height={100} alt="Revive Logo" className="mb-4" />
 
         <h1 className="text-3xl font-semibold text-[#253612] mb-1">Welcome Back</h1>
         <p className="text-gray-600 mb-6">Login to your account</p>
 
-        {error && (
-          <p className="text-red-600 text-sm mb-4">{error}</p>
-        )}
+        {error && <p className="text-red-600 text-sm mb-4">{error}</p>}
 
         {/* SWITCH LOGIN TYPE */}
         <div className="flex gap-3 mb-6">
@@ -193,7 +210,6 @@ export default function Login() {
             <div className="mb-6">
               <div className="relative">
                 <Lock className="absolute left-4 top-3.5 text-[#253612]" size={20} />
-
                 <label className="absolute left-12 top-2 text-xs text-[#253612]">
                   Password
                 </label>
@@ -214,7 +230,6 @@ export default function Login() {
               </div>
             </div>
 
-            {/* LOGIN EMAIL BUTTON */}
             <button
               onClick={loginEmail}
               className="w-full bg-[#253612] text-white py-3 rounded-2xl text-sm"
@@ -247,7 +262,6 @@ export default function Login() {
               </div>
             </div>
 
-            {/* SEND OTP */}
             {!otpSent && (
               <button
                 onClick={sendOtp}
@@ -257,7 +271,6 @@ export default function Login() {
               </button>
             )}
 
-            {/* OTP INPUT */}
             {otpSent && (
               <>
                 <div className="mb-5">
@@ -301,7 +314,6 @@ export default function Login() {
           Continue with Google
         </button>
 
-        {/* SIGNUP LINK */}
         <p className="text-center mt-6 text-sm text-gray-700">
           Don’t have an account?{" "}
           <Link href="/signup" className="text-[#253612] font-medium underline">

@@ -5,7 +5,8 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Mail } from "lucide-react";
-import { auth } from "@/lib/firebase";
+
+import { getFirebaseAuth } from "@/lib/firebase";
 import { sendPasswordResetEmail } from "firebase/auth";
 
 export default function ForgotPasswordPage() {
@@ -18,9 +19,18 @@ export default function ForgotPasswordPage() {
       setError("Enter your email");
       return;
     }
+
     try {
       setError("");
+
+      const auth = await getFirebaseAuth();
+      if (!auth) {
+        setError("Firebase not loaded");
+        return;
+      }
+
       await sendPasswordResetEmail(auth, email);
+
       setSent(true);
     } catch (err: unknown) {
       if (err instanceof Error) setError(err.message);
@@ -31,6 +41,7 @@ export default function ForgotPasswordPage() {
   return (
     <div className="min-h-screen bg-[#f5f9f4] p-6 flex items-center justify-center">
       <div className="w-full max-w-lg bg-white rounded-3xl border shadow-sm p-10">
+
         {/* Top Buttons */}
         <div className="flex items-center justify-between mb-8">
           <Link
@@ -58,6 +69,7 @@ export default function ForgotPasswordPage() {
         <h1 className="text-3xl font-semibold text-[#253612] mb-1">
           Forgot Password
         </h1>
+
         <p className="text-gray-600 mb-6">
           Enter your email to receive a password reset link.
         </p>
@@ -69,11 +81,13 @@ export default function ForgotPasswordPage() {
           </p>
         )}
 
+        {/* Email Input */}
         <div className="relative mb-6">
           <Mail className="absolute left-4 top-3.5 text-[#253612]" size={20} />
           <label className="absolute left-12 top-2 text-xs text-[#253612]">
             Email
           </label>
+
           <input
             type="email"
             placeholder="you@example.com"

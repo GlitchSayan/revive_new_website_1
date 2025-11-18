@@ -1,10 +1,9 @@
 // src/types/firebase.d.ts
-
 export {};
 
 declare global {
   interface Window {
-    recaptchaVerifier?: import("firebase/auth").RecaptchaVerifier;
-    confirmationResult?: import("firebase/auth").ConfirmationResult;
+    recaptchaVerifier?: unknown;      // safe for Vercel + Next.js
+    confirmationResult?: unknown;     // safe for OTP flow
   }
 }

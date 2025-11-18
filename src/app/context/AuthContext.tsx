@@ -1,4 +1,3 @@
-// src/context/AuthContext.tsx
 "use client";
 
 import {
@@ -8,8 +7,14 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { auth } from "@/lib/firebase";
-import { onAuthStateChanged, signOut, type User } from "firebase/auth";
+
+import { getFirebaseAuth } from "@/lib/firebase";
+import {
+  onAuthStateChanged,
+  signOut,
+  type User,
+  type Auth
+} from "firebase/auth";
 
 type AuthContextType = {
   user: User | null;
@@ -20,20 +25,37 @@ type AuthContextType = {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
+  const [authInstance, setAuthInstance] = useState<Auth | null>(null);
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
+  // -----------------------------
+  // Load Firebase Auth Dynamically
+  // -----------------------------
   useEffect(() => {
-    const unsub = onAuthStateChanged(auth, (firebaseUser) => {
-      setUser(firebaseUser);
-      setLoading(false);
-    });
+    const loadAuth = async () => {
+      const auth = await getFirebaseAuth();
+      if (!auth) return; // not in browser
+      
+      setAuthInstance(auth);
 
-    return () => unsub();
+      const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+        setUser(firebaseUser);
+        setLoading(false);
+      });
+
+      return unsubscribe;
+    };
+
+    loadAuth();
   }, []);
 
+  // -----------------------------
+  // LOGOUT
+  // -----------------------------
   const logout = async () => {
-    await signOut(auth);
+    if (!authInstance) return;
+    await signOut(authInstance);
   };
 
   return (

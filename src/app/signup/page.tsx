@@ -6,13 +6,17 @@ import Image from "next/image";
 import { Mail, Lock, Eye, EyeOff } from "lucide-react";
 
 import {
-  auth,
-  googleProvider,
-  RecaptchaVerifier,
-  signInWithPhoneNumber,
+  getFirebaseAuth,
+  getGoogleProvider,
+  getRecaptcha,
+  getPhoneAuth,
 } from "@/lib/firebase";
 
-import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithPopup,
+  type Auth,
+} from "firebase/auth";
 
 export default function Signup() {
   const [mode, setMode] = useState<"email" | "phone">("email");
@@ -30,133 +34,128 @@ export default function Signup() {
 
   const [error, setError] = useState("");
 
-  // ==============================
-  // SETUP INVISIBLE RECAPTCHA
-  // ==============================
-  const setupRecaptcha = () => {
+  // -----------------------------------------
+  // ReCAPTCHA (browser only)
+  // -----------------------------------------
+  const setupRecaptcha = async (auth: Auth) => {
+    const Recaptcha = await getRecaptcha();
+    if (!Recaptcha) return null;
+
     if (!window.recaptchaVerifier) {
-      window.recaptchaVerifier = new RecaptchaVerifier(
+      window.recaptchaVerifier = new Recaptcha(
         auth,
         "recaptcha-container",
         { size: "invisible" }
       );
     }
+
     return window.recaptchaVerifier;
   };
 
-  // ==============================
+  // -----------------------------------------
   // SEND OTP
-  // ==============================
+  // -----------------------------------------
   const sendOtp = async () => {
     setError("");
 
-    if (phone.length !== 10) {
+    if (phone.length !== 10)
       return setError("Enter a valid 10-digit mobile number");
-    }
 
     try {
+      const auth = await getFirebaseAuth();
+      const phoneAuth = await getPhoneAuth();
+      if (!auth || !phoneAuth) return setError("Auth not loaded");
+
+      const verifier = await setupRecaptcha(auth);
+      if (!verifier) return setError("Recaptcha failed to load");
+
       const fullPhone = "+91" + phone;
-      const verifier = setupRecaptcha();
 
-      const confirmation = await signInWithPhoneNumber(
-        auth,
-        fullPhone,
-        verifier
-      );
-
+      const confirmation = await phoneAuth(auth, fullPhone, verifier);
       window.confirmationResult = confirmation;
-      setOtpSent(true);
 
-      alert("OTP sent successfully!");
+      setOtpSent(true);
+      alert("OTP sent!");
     } catch (err: unknown) {
       if (err instanceof Error) setError(err.message);
-      else setError("OTP sending failed");
+      else setError("Failed to send OTP");
     }
   };
 
-  // ==============================
-  // VERIFY OTP → CREATE ACCOUNT
-  // ==============================
+  // -----------------------------------------
+  // VERIFY OTP
+  // -----------------------------------------
   const verifyOtpSignup = async () => {
     try {
       if (!otp) return setError("Enter OTP");
 
       await window.confirmationResult!.confirm(otp);
-      alert("Account created successfully!");
+      alert("Account created!");
     } catch (err: unknown) {
       if (err instanceof Error) setError(err.message);
       else setError("Invalid OTP");
     }
   };
 
-  // ==============================
+  // -----------------------------------------
   // EMAIL SIGNUP
-  // ==============================
-  const onEmailSignup = async () => {
+  // -----------------------------------------
+  const emailSignup = async () => {
     setError("");
 
-    if (!email || !password || !confirm) {
+    if (!email || !password || !confirm)
       return setError("Please fill all fields");
-    }
-    if (password !== confirm) {
+
+    if (password !== confirm)
       return setError("Passwords do not match");
-    }
 
     try {
+      const auth = await getFirebaseAuth();
+      if (!auth) return setError("Auth not loaded");
+
       await createUserWithEmailAndPassword(auth, email, password);
-      alert("Account created successfully!");
+      alert("Account created!");
     } catch (err: unknown) {
       if (err instanceof Error) setError(err.message);
-      else setError("Something went wrong");
+      else setError("Signup failed");
     }
   };
 
-  // ==============================
+  // -----------------------------------------
   // GOOGLE SIGNUP
-  // ==============================
+  // -----------------------------------------
   const googleSignup = async () => {
     try {
-      await signInWithPopup(auth, googleProvider);
-      alert("Signed up with Google!");
+      const auth = await getFirebaseAuth();
+      const provider = await getGoogleProvider();
+      if (!auth || !provider) return setError("Google auth failed");
+
+      await signInWithPopup(auth, provider);
+      alert("Google signup success!");
     } catch (err: unknown) {
       if (err instanceof Error) setError(err.message);
-      else setError("Something went wrong");
+      else setError("Google signup failed");
     }
   };
 
   return (
     <div className="min-h-screen bg-[#f5f9f4] p-6 md:p-10 flex items-center justify-center">
 
-      {/* Required for OTP */}
       <div id="recaptcha-container"></div>
 
-      <div className="w-full max-w-lg bg-white rounded-3xl shadow-sm p-10 border border-[#e4e4e4]">
+      <div className="w-full max-w-lg bg-white rounded-3xl shadow-md p-10 border">
 
-        {/* TOP BUTTONS */}
         <div className="flex items-center justify-between mb-8">
-          <Link
-            href="/"
-            className="bg-[#253612] text-white px-6 py-2 rounded-full text-sm"
-          >
+          <Link href="/" className="bg-[#253612] text-white px-6 py-2 rounded-full text-sm">
             ← Home
           </Link>
 
-          <Link
-            href="/login"
-            className="bg-[#253612] text-white px-6 py-2 rounded-full text-sm"
-          >
+          <Link href="/login" className="bg-[#253612] text-white px-6 py-2 rounded-full text-sm">
             Log In
           </Link>
         </div>
 
-        {/* LOGO */}
-        <Image
-          src="/logo2.png"
-          width={100}
-          height={100}
-          alt="Revive Logo"
-          className="mb-4"
-        />
+        <Image src="/logo2.png" width={100} height={100} alt="Logo" className="mb-4" />
 
         <h1 className="text-3xl font-semibold text-[#253612] mb-1">
           Create Account
@@ -190,80 +189,32 @@ export default function Signup() {
           </button>
         </div>
 
-        {/* ========================== EMAIL SIGNUP ========================== */}
+        {/* EMAIL SIGNUP */}
         {mode === "email" && (
           <>
-            {/* EMAIL */}
-            <div className="mb-5">
-              <div className="relative">
-                <Mail className="absolute left-4 top-3.5 text-[#253612]" size={20} />
+            <input
+              type="email"
+              placeholder="Email"
+              className="w-full border rounded-xl px-4 py-3 mb-4"
+              onChange={(e) => setEmail(e.target.value)}
+            />
 
-                <label className="absolute left-12 top-2 text-xs text-[#253612]">
-                  Email
-                </label>
+            <input
+              type={showPass ? "text" : "password"}
+              placeholder="Password"
+              className="w-full border rounded-xl px-4 py-3 mb-4"
+              onChange={(e) => setPassword(e.target.value)}
+            />
 
-                <input
-                  type="email"
-                  placeholder="you@example.com"
-                  className="w-full border border-[#dcdcdc] rounded-xl pl-12 pr-4 pt-6 pb-2 text-[#1a1a1a]"
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </div>
-            </div>
+            <input
+              type={showConfirm ? "text" : "password"}
+              placeholder="Confirm Password"
+              className="w-full border rounded-xl px-4 py-3 mb-6"
+              onChange={(e) => setConfirm(e.target.value)}
+            />
 
-            {/* PASSWORD */}
-            <div className="mb-5">
-              <div className="relative">
-                <Lock className="absolute left-4 top-3.5 text-[#253612]" size={20} />
-
-                <label className="absolute left-12 top-2 text-xs text-[#253612]">
-                  Password
-                </label>
-
-                <input
-                  type={showPass ? "text" : "password"}
-                  placeholder="********"
-                  className="w-full border border-[#dcdcdc] rounded-xl pl-12 pr-12 pt-6 pb-2 text-[#1a1a1a]"
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-
-                <button
-                  onClick={() => setShowPass(!showPass)}
-                  className="absolute right-4 top-3.5"
-                >
-                  {showPass ? <EyeOff size={20} /> : <Eye size={20} />}
-                </button>
-              </div>
-            </div>
-
-            {/* CONFIRM PASSWORD */}
-            <div className="mb-8">
-              <div className="relative">
-                <Lock className="absolute left-4 top-3.5 text-[#253612]" size={20} />
-
-                <label className="absolute left-12 top-2 text-xs text-[#253612]">
-                  Confirm Password
-                </label>
-
-                <input
-                  type={showConfirm ? "text" : "password"}
-                  placeholder="********"
-                  className="w-full border border-[#dcdcdc] rounded-xl pl-12 pr-12 pt-6 pb-2 text-[#1a1a1a]"
-                  onChange={(e) => setConfirm(e.target.value)}
-                />
-
-                <button
-                  onClick={() => setShowConfirm(!showConfirm)}
-                  className="absolute right-4 top-3.5"
-                >
-                  {showConfirm ? <EyeOff size={20} /> : <Eye size={20} />}
-                </button>
-              </div>
-            </div>
-
-            {/* SIGNUP BUTTON */}
             <button
-              onClick={onEmailSignup}
+              onClick={emailSignup}
               className="w-full bg-[#253612] text-white py-3 rounded-2xl text-sm"
             >
               Create Account
@@ -271,32 +222,16 @@ export default function Signup() {
           </>
         )}
 
-        {/* ========================== PHONE SIGNUP ========================== */}
+        {/* PHONE SIGNUP */}
         {mode === "phone" && (
           <>
-            {/* PHONE FIELD */}
-            <div className="mb-5">
-              <label className="text-xs text-[#253612] block mb-1">
-                Mobile Number
-              </label>
+            <input
+              maxLength={10}
+              placeholder="10-digit mobile number"
+              className="w-full border rounded-xl px-4 py-3 mb-4"
+              onChange={(e) => setPhone(e.target.value.replace(/\D/g, ""))}
+            />
 
-              <div className="flex items-center border border-[#dcdcdc] rounded-xl px-4 py-3">
-                <span className="text-[#253612] font-medium pr-3">+91</span>
-
-                <input
-                  type="text"
-                  inputMode="numeric"
-                  maxLength={10}
-                  placeholder="10-digit number"
-                  className="w-full outline-none text-[#1a1a1a]"
-                  onChange={(e) =>
-                    setPhone(e.target.value.replace(/\D/g, ""))
-                  }
-                />
-              </div>
-            </div>
-
-            {/* SEND OTP */}
             {!otpSent && (
               <button
                 onClick={sendOtp}
@@ -306,27 +241,15 @@ export default function Signup() {
               </button>
             )}
 
-            {/* OTP FIELD */}
             {otpSent && (
               <>
-                <div className="mb-6">
-                  <label className="text-xs text-[#253612] block mb-1">
-                    Enter OTP
-                  </label>
+                <input
+                  maxLength={6}
+                  placeholder="Enter OTP"
+                  className="w-full border rounded-xl px-4 py-3 mb-6"
+                  onChange={(e) => setOtp(e.target.value.replace(/\D/g, ""))}
+                />
 
-                  <input
-                    type="text"
-                    inputMode="numeric"
-                    maxLength={6}
-                    placeholder="Enter OTP"
-                    className="w-full border border-[#dcdcdc] rounded-xl px-4 py-3 text-[#1a1a1a]"
-                    onChange={(e) =>
-                      setOtp(e.target.value.replace(/\D/g, ""))
-                    }
-                  />
-                </div>
-
-                {/* VERIFY OTP */}
                 <button
                   onClick={verifyOtpSignup}
                   className="w-full bg-[#253612] text-white py-3 rounded-2xl text-sm"
@@ -338,31 +261,19 @@ export default function Signup() {
           </>
         )}
 
-        {/* OR SEPARATOR */}
+        {/* OR */}
         <div className="flex items-center gap-3 my-6">
           <div className="h-px w-full bg-gray-300"></div>
-          <span className="text-gray-500 text-sm">or</span>
+          <span className="text-gray-500">or</span>
           <div className="h-px w-full bg-gray-300"></div>
         </div>
 
-        {/* GOOGLE SIGNUP */}
         <button
           onClick={googleSignup}
-          className="w-full border border-[#dcdcdc] py-3 rounded-2xl text-sm text-[#253612]"
+          className="w-full border py-3 rounded-2xl text-sm text-[#253612]"
         >
           Continue with Google
         </button>
-
-        {/* SWITCH */}
-        <p className="text-center mt-6 text-sm text-gray-700">
-          Prefer email?{" "}
-          <button
-            onClick={() => setMode("email")}
-            className="text-[#253612] font-medium underline"
-          >
-            Use Email Instead
-          </button>
-        </p>
       </div>
     </div>
   );
