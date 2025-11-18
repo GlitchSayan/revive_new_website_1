@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+/* ------------------------------ */
+/* Light / Dark Theme Variables   */
+/* ------------------------------ */
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #ffffff; /* You are forcing light mode — kept as is */
+    --foreground: #ededed;
+  }
+}
+
+/* ------------------------------ */
+/* Base Body Styling              */
+/* ------------------------------ */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), var(--font-sans), system-ui, -apple-system, sans-serif;
+}
+
+/* ------------------------------ */
+/* Animation Classes              */
+/* ------------------------------ */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fade-in 0.3s ease-in;
+}
+
+/* ------------------------------ */
+/* ⭐ RADIX UI SELECT FIX ⭐        */
+/* Makes dropdown boxes visible   */
+/* Works with Tailwind v4         */
+/* ------------------------------ */
+[data-radix-select-content] {
+  background: #ffffff !important;
+  border: 1px solid #d1d5db !important;   /* gray-300 */
+  border-radius: 0.5rem !important;       /* rounded-md */
+  color: #1f2937 !important;              /* gray-800 */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
+  padding: 4px 0 !important;
+}
+
+[data-radix-select-item] {
+  background: #ffffff !important;
+  padding: 8px 14px !important;
+  font-size: 0.95rem !important;
+  color: #1f2937 !important;
+  cursor: pointer !important;
+  border-radius: 4px !important;
+}
+
+[data-radix-select-item][data-highlighted] {
+  background: #f3f4f6 !important; /* gray-100 */
+}
